@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+자바스크립트도 객체를 가지고 있음
+시간을 알 수 있는 date()라는 객체 형태의 클래스가 존재
+클래스이기 때문에 함수를 가지고 있음
+ */
+	let d = new Date();		//내장 객체 Date	//Date는 객체 형태 생성자 => new 써야한다
+	alert(d);
+	let hour = d.getHours();
+	
+	if(hour < 12){
+		alert('아침 먹을 시간입니다');
+	}else if(hour < 18){
+		alert('점심 먹을 시간입니다');
+	}else{
+		alert('저녁 먹을 시간입니다');
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

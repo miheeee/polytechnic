@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+	/*논리연산에서 교환법칙 성립X*/
+	
+	true && alert('출력이 됩니까?');
+	false && alert('&& false일 때 출력이 됩니까?');	//출력 안됨
+	//and 연산자 : 두 개가 참일 때만 참인데, 앞에 꺼가 거짓이면 뒤에 꺼 볼 필요도 없이 거짓이므로 뒤에 꺼 수행하지 않음
+
+	true || alert('||출력이 됩니까?');	//출력 안됨
+	//or연산자 : 둘 중 하나만 참이어도 참이므로, 앞에 꺼가 참이면 뒤에 꺼 볼 필요도 없이 참이므로 뒤에 꺼 수행하지 않음
+	false || alert('|| false일 때 출력이 됩니까?');	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
