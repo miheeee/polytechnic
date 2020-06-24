@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*	이전 실습에선 객체를 하나하나 직접 만들어줬음
+ 	유연하다보니 한 번 객체를 정의했다 하더라도 내 맘대로 변수나 함수를 추가/삭제할 수 있음 
+ 	그러나 비슷한 성격의 객체임에도 불구하고 반복적으로 속성명과 값을 써줘야했음
+ 	어떻게 하면 노가다를 줄일까?
+ */
+	
+ 	//내부적으로 객체를 만드는 함수를 만들어서 사용하자
+	function makePerson(name, phone, addr){
+		var p = {
+			'name' : name,
+			phone : phone,
+			addr :	addr,
+			//같은 글자여도 콜론 왼쪽은 속성명으로 오른쪽은 속성값을 인식
+			
+			//자바스크립트에서는 모든 변수를 var 형태로 받기 때문에 함수도 동일하게 속성이름 : 값 형태로 표현할 수 있음 	
+			info : function(){
+				let msg = '';
+				for(let key in this){		
+					if(key != 'info')
+						msg += key + ': ' + this[key] + '<br>';
+				}
+				document.write(msg)
+			}
+		}	
+		return p;	
+	}
+	
+//	var person = makePerson('홍길동', '010-1111-2222', '경기도 광명시');
+//	person.info();
+
+	let persons = [];
+	persons.push(makePerson('홍길동', '010-1111-2222', '경기도 광명시'))
+	persons.push(makePerson('윤길동', '010-3333-4444', '서울시 서초구 서초동'))
+	
+	for(let i in persons){
+		persons[i].info();
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+		
+/*
+이벤트 루프와 백그라운드, 태스크 큐를 이해하자.
+setTimeout이 호출되고 지워지면서 백그라운드로 함수f와 함께 0초 타이머를 보냅니다.  
+백그라운드는 3초를 센 후 태스크 큐에 함수f를 보냅니다. 
+이벤트 루프는 항상 대기하고 있다가 호출 스택이 비워지면(전역 컨텍스트 main 실행이 종료되면) 
+태스크 큐에서 함수를 하나씩 호출 스택으로 밀어 올립니다. 
+함수 f가 실행되고 호출 스택에서 지워지게 됩니다. 
+이벤트루프는 태스크 큐에 새로운 함수가 들어올 때까지 대기합니다.  
+사실 setTimeout 0도 기본적으로 4ms의 지연 시간을 갖고 있어서 setTimeout 4ms와 마찬가지입니다. 
+노드는 1ms의 지연 시간을 갖고 있습니다.
+참고로 백그라운드에서 3초를 정확하게 세어 주었다고 하더라도, 호출 스택에 함수들이 가득차 있다면 3초 후에 실행되지 않을 수도 있습니다. 
+이벤트 루프가 태스크 큐에서 함수f를 호출 스택으로 끌어올리지 못하거든요. 
+setTimeout의 초가 정확하지 않을 수도 있는 이유입니다. 
+호출 스택에서 너무 많은 일을 하게 되면 태스크 큐에 쌓인 콜백 함수들이 제 때에 실행되지 않기 때문에 너무 버거운 일들은 하지 않는 게 좋습니다.
+https://www.zerocho.com/category/JavaScript/post/597f34bbb428530018e8e6e2
+*/
+
+
+	
+/*
+	alert("첫번째...");
+	
+	setTimeout(function(){
+		alert('setTimeout()...');
+	}, 0);
+	
+	alert("두번째...");
+*/	
+	/*
+	실행순서 : 첫번째 - 두번째 - setTimeout()
+	setTimeout함수에서 ms가 0인 것은 지금 바로 수행하라는 뜻
+	그런데 왜 마지막으로 출력될까?
+	setTimeout는 함수이므로 잠깐 집을 나갔다가 setTimeout의 일을 다 처리해서 돌아오기 전까진 alert을 수행할 수 없음. 
+	alert('setTimeout()...');는 우리 집에서만 수행해야하므로
+	setTImeout은 웹브라우저 자체에서 뭘 할 수 있는 형태가 아니라 다른 데에서 시간을 재야하므로 제어권이 어디로 갔다가 일이 다 끝나면 제어권이 돌아옴
+	마치 블럭 상태에 빠진 것처럼
+	*/	
+
+	
+
+/*
+	//i에 0 , 1, 2 호출하는거 하나씩 호출 
+	//function의 i에 0,1,2 들어감
+	//function가 끝나고 setTime을 실행 그럼 function의 i 값을 setTime이 알까?
+	for( var i = 0; i < 3; i++){
+		setTimeout(function(){
+			alert(i);
+		}, 0);
+	}
+	// 3 3 3 출력	
+	//자바스크립트 파서가 웹브라우저에게 일을 넘김
+	//자바스크립트의(파서가) 모든 문법이 수행된 다음 그제서야 setTimeout함수가 실행됨
+	//for문이 다 돌고 setTimeout함수 실행하므로 그 때 i값인 3을 출력하게 되고, 
+	//밀린 처리가 있으니 3번 반복해서 출력한다.(3번 alert()하기로 약속되어있음)
+	//123과 같이 우리가 원하는대로 나오지 않는 현재 상황을 해결하기 위해선 클로저 사용
+*/
+
+
+	//클로저 사용
+	function func(i){
+		return setTimeout( function(){ alert(i); }	, 0);
+	}
+	
+	for(var i = 0; i < 3; i++){
+		//func(i);
+		
+		/*return*/ 
+		(function(close_i){ setTimeout(function(){alert(close_i);}, 0);}) (i);	
+		//익명함수 실행 
+	}		
+	
+	//return은 생략 가능
+	//반복문을 도는 동안 클로저가 생성되어 변수 close_i에 각각의 i값을 저장해놓을 수 있다. 
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

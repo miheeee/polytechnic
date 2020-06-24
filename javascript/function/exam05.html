@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+ 	자바스크립트 내장함수
+ 	1. 타이머
+ 		setTimout(함수, ms)		일정 시간(ms)이 경과되면 어떤 행동(함수 호출)을 하도록 (=일정 추가하면 알람 주는것)
+ 		setInterval(함수, ms)		ms가 경과할 때마다 함수 호출(계속 반복) (=일정이 어떤 주기마다 알람주는 것)
+ 		claerInterval(id)		해당 id를 가진 interval을 종료 (=알람을 끄고 싶을 때)
+
+
+	//
+	 2. 코드 실행함수
+ 		eval(str)
+ 		
+ 	3. 숫자변환함수
+ 		parseInt(str)
+ 		parseFloat(str)
+*/
+
+	/*복잡한 함수라면 미리 함수를 정의해놓고 사용
+	
+		var func= function(){
+			alert('3초 지났습니다');
+		}
+		
+		setTimeout(func, 3000);
+	*/
+	
+	
+	//그 때 그 때 정의해서 사용해도 상관없는 함수라면 콜백함수 내에서 함수 정의해도 괜찮음
+	setTimeout(function(){		//콜백함수
+		alert('3초 지났습니다');
+	}, 3000);
+	
+	
+	var id = setInterval(function(){
+		document.write('현재시간: ' + new Date() + '<br>');
+	}, 1000);
+	
+	
+	setTimeout(function(){
+		alert('날짜쓰기 종료...');
+		clearInterval(id);
+	}, 10000)
+	
+	
+	/*
+	setTimeout : 일정시간이 지나면 특정 액션을 취하라
+	setInterval: 일정시간이 지날 때마다 특정 액션을 취하라
+	clear~ : setInterval 종료
+	*/
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+
+	var person = {
+			'name' : '홍길동',
+			'phone' : '010-1111-2222'		
+	}
+	
+	var person2 = {
+			'name' : '윤길동',
+			'phone' : '010-3333-4444',		
+			'addr' : '서울시 서초구'
+	}
+	
+//	var persons = [person, person2];	//person과 person2를 가지는 배열
+
+	var persons = [{
+		'name' : '홍길동', 
+		'phone' : '010-1111-2222'
+		}, {
+		'name' : '윤길동', 
+		'phone' : '010-3333-4444', 
+	}]
+
+	
+	persons.push({
+		'name' : '강길동'
+	});
+	
+	for(let index in persons){
+//		alert(index);
+		let p = persons[index]
+		//document.write(`name: ${p.name}, phone: ${p.phone}<br>`)	//근데 멤버변수가 항상 같다라는 보장은 없음
+		for(let key in p){
+			document.write(`${key} : ${p[key]}<br>`)
+		}
+		document.write('<hr>')
+	}
+	
+
+
+	//persons 배열에 객체 를 하나 추가한다. 명령어는 stack명령어와 동일 push: 넣기, pop: 제거
+
+	 persons.push({ 
+	  'name'  : '임길동',
+	  'phone' : '010-6666-7777'
+	})
+	
+	persons.pop({ 
+	  'name'    : '임길동',
+	  'phone' : '010-6666-7777'  
+	})
+	
+	
+	//stack처럼 가장 최신의 객체를 삭제한다.
+	//persons.pop();
+
+
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

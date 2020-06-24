@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+	/*
+	function returnFunc(){
+		alert('!!!');
+	}
+	returnFunc();
+	*/
+	
+	
+	/*
+	function returnFunc(name){
+		var msg = '반갑습니다 ' + name + '님!!!';	//var변수는 함수 스코프 변수, 함수 블록 안에서만 유효
+		return msg;
+	}
+	
+	//원래 이렇게 호출하고 싶었으나 msg는 함수 내용부에서 지역성에 의해 소멸되었으므로 오류
+	//함수안에서 선언한 변수는 함수 밖에서 접근할 수 없다
+	alert(msg);		//msg is not defined
+	
+	var m = returnFunc('홍길동');
+	alert(m)
+	*/
+	
+	
+	function returnFunc(name){
+		var msg = '반갑습니다 ' + name + '님!!!';	//var: 함수 스코프 변수, 함수 블록 안에서만 유효 / let: 블록 스코프
+		//함수 스코프 변수가 다른 함수를 호출하여 그 함수가 끝날 때 까지 유지됨(클로저). 
+		//가장 큰 목적은 변수의 스코프 때문. 
+		//msg변수를 계속 유지하고 싶어함. 글로벌 변수처럼 쓰고 싶은 것
+		//function은 환경을 기억하고 있음
+		return function(){	
+			alert(msg);		
+			//익명함수 리턴
+			//alert까지 하나의 과정으로 만듦	
+			//함수 내부에서 여러 변수와 여러 일을 처리할 때 or
+			//여러 개의 값을 리턴하고 여러 함수를 호출할 때 해당 변수값이 필요하다면 코드가 복잡해짐
+			//변수가 유지되도록 만든다면(클로저) 이런 문제 해결할 수 있음
+			//또, 매개변수를 다양하게 바꿔가면서 쓸 수 있음
+		};
+	}
+	
+	
+	
+//	var f = returnFunc('홍길동');
+//	f();
+	
+	returnFunc('홍길동')();
+	
+
+	/*
+	closer
+	함수에서 만든 변수가 있는데 그 변수는 함수가 종료되면 사라지는데
+	그렇지 않고 유지시키고 싶을 때 클로저라는 기술 사용
+	
+	함수 안에서 값을 유지하고 그 함수를 호출한다
+	msg라는 변수가 closer덕분에 살아있음 
+	msg라는 함수 스코프 변수의 스코프 때문에 나온 것이 closer
+	*/
+	
+	</script>
+</head>
+<body>
+
+</body>
+</html>
