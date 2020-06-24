@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	
+	
+	function aaa(){
+		alert('call aaa()');
+	}
+	
+	function aaa(data){
+		alert('call aaa(data)');
+	}
+	
+	function aaa(a, b){
+		alert('call aaa(a, b)');
+		for(let i in arguments){
+			alert(arguments[i])
+		}
+	}
+	
+	aaa(10, 20, 30, 40, 50);	//맨 마지막으로 정의한 함수 aaa(a, b)호출
+	
+	
+	
+	/*
+	자바스크립트에서 함수는 오직 함수 이름으로만 구분됨
+	인자를 몇 개 넘길지 모름
+	함수를 정의하면 우리가 쓴 적은 없지만 자바스크립트가 정의해놓은 파라미터가 하나 있음
+	인자가 몇개일지는 실제 함수가 가지고 있는 내장 변수인 arguments를 통해 인자가 몇개고 뭔지 알아냄
+	마치 자바 메인 메소드의 args와 같은 역할
+	*/
+	
+	//오버로딩이 되는 것처럼 보임
+	function aaa(){
+		switch(arguments.length){
+		case 0 :
+			alert('call aaa()...');
+			break;
+		case 1 :
+			alert('data: ' + arguments[0]);
+			break;
+		case 2 :
+			alert('a: ' + arguments[0] + ', b: ' + arguments[1]);
+			break;
+		}
+	}
+	
+	aaa();
+	aaa('hello');
+	aaa(10, 20);
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

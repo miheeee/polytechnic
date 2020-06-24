@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	
+	/*Hoisting(호이스팅)
+	//작성
+	num = 100;
+	alert(num);
+	var num;
+	alert(num + 20);
+	
+	//해석 순서
+	var num;
+	num = 100;
+	alert(num);
+	alert(num + 20);
+	
+	//작성
+	var a = 100;
+	alert(a);
+	var b = "Hello";
+	alert(b);
+	
+	//해석 순서
+	var a;
+	var b;
+	
+	a = 100;
+	alert(a);
+	b = "Hello";
+	alert(b);
+	*/
+	
+	var a = 10;
+	let b = 20;		//let변수이므로 같은 이름으로 변수를 재선언할 수 없다
+	const c = 30;	//const변수(상수 형태)이므로 값을 대입할 수 없다
+	
+	alert(`a = ${a}, b = ${b}, c = ${c}`);
+	
+	a = a * 5;
+	b = b * 5;
+//	c = c * 5;	//오류 발생(상수값 대입금지)
+	
+	alert(`a = ${a}, b = ${b}, c = ${c}`);
+	
+	var a = 100;
+//	let b = 100;	//오류발생(재선언 금지)
+	
+	alert(`a = ${a}, b = ${b}, c = ${c}`);
+	
+	{
+		var temp = 1000;
+		let letTemp = 2000;		//let변수의 생명주기는 블록스코프
+		alert(`temp: ${temp}, letTemp: ${letTemp}`);	
+	}
+	alert(`temp: ${temp}, letTemp: ${letTemp}`);	//let변수인 letTemp는 블록이 끝나고 소멸되었으므로 오류 발생
+	
+	/*let, const 변수는 호이스팅이 발생하지 않는다
+	var형은 호이스팅이 일어나기 때문에 여러번 선언한다 하더라도 맨 위에 한번만 선언됨
+	그리고 그 이후엔 대입만 일어남
+	let형은 호이스팅이 발생하지 않아 같은 이름을 가진 변수를 다시 선언할 수 없음
+	var형의 변수는 함수 scop, 함수 안에서만 사용
+	나머지는 블록( {   } ) 스코프, 스코프가 끝나면 사라짐
+	var형보다는 let형을 더 많이 사용하라고 권장
+	자바스크립트는 인터프리터형이기 때문에 에러가 발생하면 실행되다 중단된다.
+	*/
+</script>
+</head>
+<body>
+
+</body>
+</html>
