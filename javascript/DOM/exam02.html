@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+자바스크립트에서 특정ID에 해당하는 태그에 접근할 때 document.getElementByid 사용
+document. 는 찾을 범위(<html></html>)를 말함
+document.body는 body에서 찾겠다는 뜻	
+*/
+	window.onload = function(){
+		
+//		var id = document.getElementById('아이디')
+		/*
+		body문의 특정 태그에 접근하려면?
+		태그를 구분해주기 위해 id나 class속성 붙일 수 있었음
+		동일한 id는 문서 당 하나, 클래스는 여러개 가능
+		*/
+		var id = document.querySelector('#아이디')	
+		//css랑 똑같음. id에는 #로 class에는 .으로 접근
+		//querySelector: 어떤 선택자에 의헤서 특정한 태그 하나를 선택하고 싶음
+		//선택자와 일치하는 문서 내 첫 번째 Element를 반환
+		//태그네임, 아이디, 클래스네임 다 합친 결과 보여줌
+		//일치하는 요소가 없으면 null을 반환
+
+//		console.log(id)
+		id.innerHTML = '아이디'
+		
+		var password = document.querySelector('.pwd')
+		console.log(password)
+		password.innerText = '패스워드'	
+	}
+		
+</script>
+</head>
+<body>
+	<table border="1" style="width:100px; height: 100px">
+	<tr>
+		<td id="아이디">ID</td>
+	</tr>
+	<tr>
+		<td class="pwd">PASSWORD</td>
+	</tr>
+</body>
+</html>

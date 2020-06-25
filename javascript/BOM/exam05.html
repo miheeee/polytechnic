@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//PLAY버튼을 누르면 노래가 나오도록 하고 싶음
+//내가 원하는 이벤트가 있으면 추가하면 됨
+//html엔 이런 동작을 하기 위해 약속되어있는 이름이 있음
+//onload역시 약속되어있음
+
+	let audio = new Audio()	//오디오라는 내장객체 존재
+	audio.src = '../html/playlist/Kalimba.mp3'	//src속성 사용하여 어떤 노래 틀 건지 지정
+	
+	function play(){
+		audio.play();	//body문에 만들어준 play함수 말고 onclick속성에 바로 audio.play 써줘도 됨. 자체적으로 지원하고 있기 때문에
+	}
+	
+
+</script>
+</head>	
+<body>
+	<input type = "button" value = "PLAY" onclick="play()">		
+	<!-- on: 이벤트가 발생하면 ---해라/onclick: 클릭 이벤트 이후 --해라(왼쪽 마우스를 누르면)/onload: body문이 로드되면(웹브라우저에 뿌려주면) ~해라-->
+	<input type = "button" value = "STOP" onclick="audio.pause()">	
+</body>
+</html>

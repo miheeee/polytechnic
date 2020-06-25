@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//지금까진 존재하는 태그를 찾아서 해당 태그의 내용 가져왔음
+//새로운 태그를 만들려면
+//바디 태그 밑에 h1태그를 집어넣고 싶음
+
+	window.onload = function(){
+		document.write('<h1>Hello</h1>')	
+		//동적으로 body문에 태그 쓴다. 그냥 html에서 텍스트를 써주는것과 같다.
+		//기존에 html문에 태그가 작성되어있으면 덮어씌워진다
+//		document.body.innerHTML = '<h1>Hello</h1>'
+	
+//		var div = document.querySelector('div')		//null
+//		div.innerHTML = '<h1><Helllo></h1>'
+	
+		//document.write와 innerHTML과 달리 기존 html의 body문을 덮어씌우지 않고 추가만 할 수 있다
+		let tag = document.createElement('h1')
+		let tagText = document.createTextNode("Hello")		
+		//script안에 쓰는 이유는 동적으로 그 때 그 때 변할 수 있게 만듦		
+		//반면, body문 안에 쓰면 정적. 고정
+		
+		//console.log(tag)
+		//console.log(tagText)
+		
+		//각각 태그와 거기에 들어갈 텍스트인 "Hello"를 만들었지만 태그 안에 텍스트를 아직 넣어주지 않음. 태그 안에 텍스트를 넣어준 다음 최종적으로 body태그에 넣어줘야함
+		//appendChild: 새로운 노드를 해당 노드의 자식 노드 리스트(child node list)의 맨 마지막에 추가
+		tag.appendChild(tagText)
+		document.body.appendChild(tag)
+	
+		
+		imgTag = document.createElement('img')	//img태그는 객체. 속성을 추가하려면 객체명.속성으로 접근
+		imgTag.src = "https://t1.daumcdn.net/daumtop_chanel/op/20170315064553027.png"
+//		document.body.appendChild(imgTag);
+		
+		let aTag = document.createElement('a')	
+//		aTag.href = "https://www.daum.net/"
+
+		aTag.setAttribute('href', 'https://www.daum.net/')
+		aTag.setAttribute('target', '_blank')	//새 윈도우 창을 열어서 웹페이지를 연다. 기존의 창은 그대로 남겨져 있다. 
+		
+		aTag.appendChild(imgTag);
+		document.body.appendChild(aTag);
+		
+		console.log(aTag)
+		//widow.open("https://www.daum.net/")
+		
+		/*
+		appendChild는 DOM 함수이고
+		append는 JavaScript 함수
+		*/
+}
+</script>
+</head>
+<body>
+</body>
+</html>

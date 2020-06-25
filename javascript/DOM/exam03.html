@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	
+	window.onload = function(){
+		
+		var tags = document.getElementsByTagName('td')	//Element's' => 여러개 나올 수 있으므로 복수형으로 써준 것
+		console.log(tags[0])
+		console.log(tags[1])
+		
+		tags[0].innerHTML = '아이디'
+
+		//let nodes = document.querySelector('td')		//제일 처음 나오는 선택자 하나만 가져옴
+		let nodes = document.querySelectorAll('td')		//해당하는 모든 선택자 가져옴
+		console.log(nodes)
+		nodes[1].innerText = '패스워드'
+		
+
+	}
+		
+</script>
+</head>
+<body>
+	<table border="1" style="width:100px; height: 100px">
+	<tr>
+		<td>ID</td>
+	</tr>
+	<tr>
+		<td>PASSWORD</td>
+	</tr>
+</body>
+</html>

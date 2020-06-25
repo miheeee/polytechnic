@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+ DOM(Document Object Model 의 약자)
+   문서객체, html문서에 접근하는 객체
+ - 문서에 대한 모든 내용을 담고있는 객체. 도큐먼트에 관련 된 내용 모두
+ - 문서 즉 열려진 페이지에 대한 정보를 따로 객체화 시켜서 관리함
+
+ - 자바스크립트로는 객체화 된 모델을 이용하여 동적 HTML을 제어할 수 있다.
+ - elements(요소) 에 대한 접근을 통해 HTML의 내용을 변경 할 수 있다.
+ - CSS (style) 의 내용 또한 변경 가능하다.
+ 
+BOM(Brouser Object Model 의 약자)
+ - 브라우저에 대한 모든 내용을 담고있는 객체. 브라우저에 관련 된 내용 모두
+ - 뒤로가기, 북마크, 즐겨찾기, 히스토리, URL정보 등..
+ - 브라우저가 가지고 있는 정보를 따로 객체화 시켜서 관리함
+ */
+ 
+ 	/*자바스크립트에서 바디태그에 무슨 내용이 있는지 알고 싶음. 웹브라우저에 먼저 띄움
+	바디태그를 이미 알고 있어야하므로 이전에 온로드가 다 수행되어야 함*/
+	
+	console.log(document.body)			//로드전 : null, 바디를 아직 읽지 않았으므로 없다고 생각		//document로는 기본태그에만 접근 가능
+	window.onload = function(){
+		console.log(document.body)			//로드후: 바디 내용 출력, 바디를 읽어서 바디에 있는 내용을 보여줄 수 있게 됨	
+		/*콘솔모드에서는 body내용이 다 나왔지만 
+		document.write로는 object객체임만을 알려줌
+		=> [object HTMLBodyElement]
+		=> 우리가 원한 게 아님. 우리는 바디 내용을 보고 싶었던 것*/
+		document.write(document.body)	
+
+		//태그 내부 모든 내용 가져옴(태그 + 글자)
+		alert('innerHTML: ' + document.body.innerHTML)		
+		
+		//태그 말고 글자만 뽑아서 보고 싶음
+		alert('innerHTML: ' + document.body.innerText)
+		//꼭 body태그가 아니라 다른 태그 내부의 내용을 알고 싶을 때도 inner을 사용할 수 았음
+		
+		
+		//tags를 body문에 쓰고 싶다면? 아까는 body문 내용을 읽어왔음
+		let tags = ''
+		tags += '<ul>'
+		tags += '<li>red</li>'
+		tags += '<li>orange</li>'
+		tags += '<li>blue</li>'
+		tags += '</ul>'
+				
+
+		//원래 있던 내용을 통째로 바꿈(지우고 새로운 걸로)
+		document.body.innerHTML = tags		
+		document.body.innerText = tags		//'<h1>aaa</h1>'을 넣으면 <h1>을 태그가 아닌 글자로 인식해서 그냥 글자 그대로 모두 출력
+		//console.log(document.body)	
+		
+		//body에 있던 내용 뒤에 이어서 쓰고 싶으면
+//		document.body.innerHTML = document.body.innerHTML + tags
+
+		document.body.innerHTML += '<br>'
+		document.body.innerText += tags
+		
+		
+		//여러개 태그가 존재하는 body에서 특정 태그를 읽는 방법은?
+				
+	}
+	
+</script>
+</head>
+<body>
+	hello<br>
+	<h1>안녕하세요</h1>
+</body>
+</html>
