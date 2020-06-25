@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+//	var books = ['신데렐라', '콩쥐팥쥐', '피터팬', '백설공주']
+	
+	//원소 하나하나 넣을 수 있음
+	var books = new Array();
+	books.push('신데렐라')
+	books.push('콩쥐팥쥐')
+	books.push('피터팬')
+	books.push('백설공주')
+	
+	for(let element of books){
+		document.write(element + '&nbsp;&nbsp;&nbsp;')		//&nbsp;는 공백을 의미
+	}
+	document.write('<hr>')
+	
+	
+	//정렬
+	books.sort()
+	for(let element of books){
+		document.write(element + '&nbsp;&nbsp;&nbsp;')
+	}
+	document.write('<hr>')
+	
+	
+	//숫자 배열 생성
+	var nums = [12, 5, 357, 85, 56, 8, 21]
+	document.write(nums + '<hr>')
+	
+	//문자형 정렬
+	nums.sort()	//숫자를 문자열로 인식해서 정렬. 숫자가 기준이 아닌 아스키코드를 기준으로 크기순 정렬(사전처럼)
+	document.write(nums + '<hr>')		
+	
+	//숫자형 정렬
+	//오름차순	
+	nums.sort(function(left, right){	//callback형태 취함
+		return left - right;		
+	})
+	document.write(nums + '<hr>')
+	
+	//내림차순
+	nums.sort(function(left, right){
+		return right - left;		
+	})
+	document.write(nums + '<hr>')
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

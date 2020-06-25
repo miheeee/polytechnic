@@ -1,0 +1,109 @@
+`<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function Person(name, phone, addr){
+		this.name = name;
+		this.phone = phone;
+		this.addr = addr;
+	}
+	
+	Person.prototype.hobby = '잠자기'		//변수도 프로토타입에 정의할 수 있긴 함.
+	
+	//인포함수는 객체마다 동일하게 사용하므로 각각의 객체가 아닌 프로토타입에 정의해놓는 것이 효율적
+	Person.prototype.info = function(){
+		var msg = '';
+		for(let key in this){
+			if((typeof this[key] != 'function'))
+				msg += key + ': ' + this[key] + '<br>'
+		}
+		document.write(msg);
+	}
+	//프로토타입에 함수 뿐만 아니라 변수도 정의할 수 있음	
+	
+	
+	//생성자 함수로 Doctor생성 
+	function Doctor(name, phone, addr, major){
+//		this.name = name;
+//		this.phone = phone;
+//		this.addr = addr;
+		
+		//person이 가지고 있는 속성이 3개나 있다
+		//person이라는 생성자 함수 사용해볼까?
+		//this.person = new Person(name, phone, addr);
+		//이렇게 하면 새로운 Person이라는 객체가 만들어지는 것뿐이지 내 객체 안에 속성이 생기는 것이 아님
+	//}	
+	//var p = new Doctor();
+	//console.log(p);
+		
+//		Person.call(this, name, phone, addr)	//Person에서 정의된 this가 Doctor꺼(호출하는 주체)임을 명시	//객체끼리 뭔가를 할 때는 주체를 알려주기 위한 this를 꼭 써주자
+		/*함수를 호출하는 방법에는 함수 뒤에 ()를 붙이는 것과, call 그리고 apply하는 방법이 있습니다.
+			call과 apply가 공통적으로 가진 첫번째 인자의 역할은 뭘까요? 바로 this를 대체하는 겁니다.
+			call, apply, bind에서 첫 번째 인자로 다른 것을 넣어주는 게 this를 바꾸는 방법 중 하나입니다.*/
+		
+		//Person(this, name, phone, addr); 이건 아닌 듯
+		
+	
+		//var d = Doctor("홍길", "01052552", "서울", "수학");
+		//alert(d['name']); 
+		
+		//호출할 함수명.call
+//		Person.call(this, name, phone, addr)		//this-생성자함수에서 this를 썼는데 생성자함수 그냥 호출해오면 this가 누군지 모른다
+		//전개연산자를 사용할 수도 있음. 그런데 apply가 있으니까 call함수에서 전개연산자를 사용할 의미는 별로 없음
+//		Person.call(this, ...arguments)		
+		//저번에 apply했을 때 참조
+//		Person.apply(this, arguments);	//모든 함수에는 arguments 안에 여러 요소가 배열처럼 들가있는데. 전개연산자로 풀어서 대입해주는거임		
+		//call과 apply함수의 차이는 배열형태로 넣어주냐 그렇지 않냐
+		
+		
+		this.super = Person;	//super는 내가 지어준 이름(super는 예약어가 아님)
+		//Person이라는 함수를 내 안에 정의 내 안에 Person이라는 함수 존재하게 됨. 여기서 this는 호출된 객체를 의미
+		this.super(name, phone, addr);
+		/*
+		Person.call은 this가 누구껀지 명시해주지 않았기 때문에 필요
+		하지만 this.super()에서 this가 누구껀지 명시해주었기 때문에 자동적으로 나의 꺼가 불러지기 때문에 
+		this를 따로 인자에 설정해주지 않아도 됨
+		*/		
+		
+		this.major = major;
+	}
+
+	Doctor.prototype.call = function() {
+		alert('doctor call().....')
+	}
+	
+	//doctor.prototype.hobby : 프로토타입의 값을 공유하는 형태
+	//doctor.hobby : 자기만의 속성 정의. 프로토타입에 hobby가 있어도 자기 객체 안에서 정의한 것 우선
+	
+	//Person도 Doctor도 name, phone, addr속성을 가지고 있음
+	//상속받는 것처럼 어떻게 할 수 있을까? 위의 ㄱ.코드 참고
+	Doctor.prototype = Person.prototype;		//ㄱ.
+	//해당 코드 주석처리 했을 때/안 했을 때 콘솔창에 찍어서 비교해보기. 
+	//이 코드 없으면 상속의 개념 없이 단순히 Person이라는 함수만 갖다 쓴 거임
+	
+	let person = new Person('홍길동', '010-1111-2222', '경기도 광명시');
+	person.info();
+	
+	
+	let doctor = new Doctor('나최고', ' 010-4444-5555', '서울시 서초구 서초동', '셩형외과');
+	console.log(doctor);
+//	doctor.call();
+	/*Doctor.prototype을 Person.prototype으로 정의하는 순간 doctor는
+	Doctor.prototype을 끊어먹고 Person.prototype을 가르키게 됨
+	따라서 Doctor.prototyp에 있던 call()함수는 사용하지 못함
+	*/
+			
+	document.write('person instanceof Person: ' + (person instanceof Person) + '<br>');		//true
+	document.write('doctor instanceof Doctor: ' + (doctor instanceof Doctor) + '<br>');		//true - Doctor.prototype을 끊어먹었다고 해도 내가 Doctor객체라는 사실엔 변함 없음
+	document.write('doctor instanceof Person: ' + (doctor instanceof Person) + '<br>');		//true - Doctor는 Person을 상속받았기 때문 
+	//document.write('Doctor instanceof Person: ' + (Doctor instanceof Person) + '<br>');
+
+			
+</script>
+</head>
+<body>
+
+</body>
+</html>

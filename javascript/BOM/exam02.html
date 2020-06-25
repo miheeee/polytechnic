@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var sub = window.open("", "", "width=400, height=500")
+	
+//	sub.resizeTo(800, 800);
+	
+	//전체화면으로 띄우려면 윈도우창의 크기를 알아야 함 
+	//그럴 때 사용하는 게 screen객체
+	let width = screen.width	//screen의 멤버변수
+	let height = screen.height
+	
+	sub.moveTo(0, 0);	//left top에서부터 시작하도록	//moveTo 절대적 moveBy현재상태에 맞춰
+	sub.resizeTo(width, height);
+	//moveBy가 상대적 위치를 기준으로 움직이는 것 처럼
+	//resizeBy는 현재 크기를 기준으로 사이즈 조절
+	
+	
+	
+    let timeId = window.setInterval(function() {
+	               sub.resizeBy(-20, -20);
+	               sub.moveBy(10, 10);
+	               },1000)
+                 
+    setTimeout(function(){
+	    clearInterval(timeId);
+	}, 5000);
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//문자열은("") string이라는 내장함수를 가지고 있어 여러가지 기능 수행 가능 
+
+	var data = new String("Hello JAVASCRIPT!!!")
+	
+	String.prototype.change = function(){
+		//css 관련
+		//사실 자바스크립트를 씀으로 html태그가 계속 추가되는 것
+		//length는 예외적으로 함수가 아닌 속성
+		return this.toUpperCase().bold().fontcolor('red')
+				.fontsize("20pt").link("http://www.naver.com")		//Hello JAVASCRIPT!!!를 누르면 네이버로 이동하도록 링크를 건다
+	}
+	
+	document.write('data: ' + data + '<br>')
+	document.write('change(): ' + data.change() + '<br>')
+	
+	
+	var str = "Hello world";
+	
+	document.write('길이: ' + str.length + '<br>')	//11
+	document.write('3번째 문자: ' + str.charAt(2) + '<br>')		//l
+	document.write('0번째 문자의 아스키코드: ' + str.charCodeAt(0) + '<br>')		
+	document.write('concat("!!!"): ' + str.concat("!!!") + '<br>')		
+	document.write('search("llo") ' + str.search("llo") + '<br>')		
+	document.write('search("llp") ' + str.search("llp") + '<br>')	//찾는 글자가 존재하지 않는다는 뜻으로 -1	반환
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+/*
+ 보통 객체는 생성자함수로 생성
+ 그런데 생성자 함수를 쓰다보니까 객체 만드는데 함수를 사용하는 게 직관적이지 않은 것 같음
+ 버전이 업데이트되면서 클래스로도 객체 생성 가능
+클래스에서 생성자는 constructor라고 부름
+그러나 클래스라는 이름을 사용하고 있어도(무늬는 클래스) 내부적으로는 프로토타입에 의해 움직이고 있음 
+ */
+ 
+	class Person{
+		
+		//new를 하는 순간 constructor 실행
+		//생성자함수를 대체하기 위해 클래스 안에 constructor존재
+		constructor(name, phone, addr){
+			this._name = name;		//this라는 키워드 꼭 붙여주기	//여기서 클래스는 완벽하지 않은 개념이므로 this가 누군지가 애매하므로 명확히 표현해줘야함
+			this._phone = phone;
+			this._addr = addr;	//보안성이 필요한 경우 , 변수명에 밑줄을 추가하여 지음. 밑줄은 보통 비밀이라는 의미
+			/*
+			자바스크립트에서 캡슐화
+			기본 public
+			private,protected  _ 붙여 선언
+			_(underBar) 를 붙이는 것은 외부에서 언더바를 붙힌 프로퍼티나 메서드에 접근하여 사용하지 말라는 암묵적인 약속입니다. 
+			클래스(생성자함수)명의 시작문자를 대문자로 사용하는 것과 마찬가지입니다.
+			캡슐회는 만일의 상황(타인이 외부에서 조작)을 대비해서 외부에서 특정 속성이나 메서드를 시용자가 사용할 수 없도록 숨겨놓은 것입니다.
+			*/
+		}
+		
+		/* getter/setter
+		/object에 prototype에 정의 되어 있는get, set을 재정의
+		속성명에 접근하는 것처럼 사용하면((ex).name) 내부적으로 getter나 setter 호출. 
+		그 멤버변수(name)가 있는 것처럼 보이지만 실제로는 없음. 실제 있는 속성은 언더바가 붙여진 _name
+		접근자 프로퍼티를 사용하면 함수처럼 호출 하지 않고, 
+		일반 프로퍼티에서 값에 접근하는 것처럼 평범하게 user.fullName을 사용해 프로퍼티 값을 얻을 수 있습니다. 
+		나머지 작업은 getter 메서드가 뒷단에서 처리해줍니다.
+		*/
+		get name() {
+			return this._name
+		}
+		
+		set name(name) {
+			this._name = name
+		}
+		
+		get phone() {
+			return this._phone
+		}
+		
+		set phone(phone) {
+			this._phone = phone
+		}
+		
+		get addr() {
+			return this._addr
+		}
+		
+		set addr(addr) {
+			this._addr = addr
+		}
+		
+		info(){
+			alert(`name: ${this._name}\nphone: ${this._phone}\naddr: ${this._addr}`)
+		}
+	}
+	
+	//닥터가 펄슨을 상속 => 내부적으로 프로토타입이 옮겨가는 형태
+	//상속을 의미하는 extends키워드 잊지말고 써주기
+	class Doctor extends Person{
+		constructor(name, phone, addr, major){
+//			this._name = name;
+//			this._phone = phone;
+//			this._addr = addr;
+
+			super(name, phone, addr);	
+			/* super
+			생성자에서는 super 키워드 하나만 사용되거나 this 키워드가 사용되기 전에 호출되어야 합니다. 그렇지 않을 경우 참조오류가 발생합니다.
+			또한 super 키워드는 부모 객체의 함수를 호출하는데 사용될 수 있습니다.
+			여기서 super는 부모생성자를 의미. 앞선 함수 생성자를 통한 객체 생성 부분에서 임의로 super와 동일한 함수명을 썼던 것과는 다름
+			상속받았다 하더라도 상속받는 것을 내껄로 만들기 위해 super 호출
+			super는 함수에서는 사용가능하지만 클래스 안에서는 예약어로 사용되기 때문에 같은 이름의 함수명을 쓰지 않는 게 좋다
+			this._major = major;
+			*/
+		}
+		
+		set major(major){
+			this._major = major;
+		}
+		
+		get major(){
+			return this._major;
+		}
+	}
+	
+	let person = new Person('홍길동', '010-1111-2222', '서울시 서초구');
+	console.log(person);
+	person.info();
+	alert('name: ' + person.name)
+	//_name속성은 있지만 name은 없음
+	//그래서 _name속성에 접근할 순 없지만, .name으로 접근하려고 하면 자동으로 name의 이름을 가지는 get함수로 값을 가질 수 있음
+	//alert('_name: ' + person._name)		//그렇다고 아예 접근하지 못하게 막아놓은 건 아님
+	
+	let doctor = new Doctor('나최고', '010-3333-4444', '경기도 용인시', '신경외과')
+	console.log(doctor);
+	//alert(doctor instanceof Person);
+
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

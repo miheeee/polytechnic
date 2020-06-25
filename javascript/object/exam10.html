@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+//내장객체
+	var num = 10;
+	var num2 = new Number(10);
+	
+	document.write('num: ' + num + ': ' + (typeof num) + '<br>');		//number형
+	document.write('num2: ' + num2 + ': ' + (typeof num2) +  '<br>');	//object형
+
+	//모든 객체는 object를 상속받음
+	Object.prototype.info = function(){
+		alert(this)
+	}
+	
+	num.info();		//원칙적으로는 오류 발생. 원래 기본자료형 타입(primative)은 프로토타입에 접근하지 못함. 단, 버전에 따라서 달라질 수도 있음
+	num2.info();	//프로토타입은 오직 object형 데이터에만(new를 통해서 생성된 객체) 적용할 수 있음
+		
+</script>
+</head>
+<body>
+
+</body>
+</html>
